@@ -2,21 +2,30 @@ import styled from "@emotion/styled";
 import { Box, Button, Container, Link } from "@mui/material";
 import Switch from "@mui/material/Switch";
 
-const DesktopMainMenu = styled(Container)`
-  padding: 15px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+const Div = styled.div`
 
+
+`
+const DesktopMainMenu = styled.div`
+  padding: 20px 20px;
+  position: relative;
+  display: flex;
+justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+  position: absolute;
+  left: 0;
+  right: 0;
   @media (max-width: 899px) {
     display: none;
   }
 `;
 const MobileMainMenu = styled.div`
+  padding: 0px 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+  z-index:999;
   @media (min-width: 900px) {
     display: none;
   }
@@ -27,49 +36,53 @@ const SiteLogo = styled.img`
 `;
 const MenuLink = styled(Link)`
   font-size: max(15px, 17px);
-  font-family: "poppins-light";
   font-weight: bolder;
-  color: ${ (props) => props.theme.textPrimary};
-  text-transform: uppercase;
+  z-index:1;
+  font-weight: 500;
+  font-family: "S-P";
+  color: ${(props) => props.theme.textSecondary};
+  font-weight:bold;
   text-decoration: none;
-  padding: ${ (props) => props.p? props.p: '0 15px'};
+  padding: ${(props) => (props.p ? props.p : "0 15px")};
   cursor: pointer;
   transition-duration: 0.5s;
 
-  &:hover, &:active, &:focus {
-    color: #ffffff;
+  &:hover,
+  &:active,
+  &:focus {
+    /* color: #FEB30C; */
     transition-duration: 0.5s;
   }
   @media (max-width: 899px) {
+    
     display: block;
-    padding: ${ (props) => props.p? props.p: '15px 0 15px 20px'};
+    padding: ${(props) => (props.p ? props.p : "15px 0 15px 20px")};
     text-align: left;
   }
   &:last-child {
-    border-width: 0px;
-    background: red;
-    width: calc(100% - 40px);
-    margin: 15px auto;
-    padding: 10px 20px;
-    text-align: center;
+    padding: 0 240px 0 0;
+    
+  @media (max-width: 899px) {
+    padding: ${(props) => (props.p ? props.p : "15px 0 15px 20px")};
+  }
   }
 `;
 
 const DrawerBox = styled(Box)`
   width: 250px;
-  background: ${(props) => props.theme.bgPrimary};
-  min-height: calc( 100vh );
+  background: #fff;
+  min-height: calc(100vh);
   text-align: center;
   padding-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`
+`;
 
-const DrawerDivider = styled.div``
+const DrawerDivider = styled.div``;
 
 const MenuButton = styled(Button)`
-  background: ${ (props)=> props.theme.pageColor};
+  background: ${(props) => props.theme.textSecondary};
   width: 35px;
   min-width: unset;
   padding-left: 6px;
@@ -77,7 +90,7 @@ const MenuButton = styled(Button)`
 `;
 
 const Humburgger = styled.span`
-  background: ${ (props)=> props.theme.textPrimary};
+  background: ${(props) => props.theme.textSecondary};
   height: 24px;
   width: 30px;
   color: #000000;
@@ -88,18 +101,18 @@ const Humburgger = styled.span`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border-top: 4px solid ${ (props)=> props.theme.textPrimary};
-  border-bottom: 4px solid ${ (props)=> props.theme.textPrimary};
+  border-top: 4px solid ${(props) => props.theme.textSecondary};
+  border-bottom: 4px solid ${(props) => props.theme.textSecondary};
 
-  &::after,&::before{
-    content: 'menu';
-    background: ${ (props)=> props.theme.pageColor};
+  &::after,
+  &::before {
+    content: "menu";
+    background: ${(props) => props.theme.pageColor};
     display: block;
     height: 6px;
     width: 100%;
-    color: ${ (props)=> props.theme.pageColor};
+    color: ${(props) => props.theme.pageColor};
   }
-
 `;
 const HumburggerClose = styled.span`
   height: 35px;
@@ -112,18 +125,24 @@ const HumburggerClose = styled.span`
   justify-content: space-between;
   position: relative;
 
-  &::after,&::before{
-    content: 'menu';
-    background: ${ (props)=> props.theme.textPrimary};
+  &::after,
+  &::before {
+    content: "menu";
+    background: ${(props) => props.theme.textPrimary};
     display: block;
     height: 6px;
     width: 100%;
-    color: ${ (props)=> props.theme.textPrimary};
+    color: ${(props) => props.theme.textPrimary};
     position: absolute;
   }
-  &::before{ transform: rotate(-45deg) translate(-8px, 8px); top: 3px;}
-  &::after{ transform: rotate(45deg) translate(-12px, -12px); bottom: -3px; }
-
+  &::before {
+    transform: rotate(-45deg) translate(-8px, 8px);
+    top: 3px;
+  }
+  &::after {
+    transform: rotate(45deg) translate(-12px, -12px);
+    bottom: -3px;
+  }
 `;
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -140,13 +159,13 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       "& .MuiSwitch-thumb:before": {
         backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
           "#fff"
-        )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`
+        )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
       },
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.mode === "dark" ? "#8796A5" : "#aab4be"
-      }
-    }
+        backgroundColor: theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
+      },
+    },
   },
   "& .MuiSwitch-thumb": {
     backgroundColor: theme.switchColor,
@@ -163,15 +182,26 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       backgroundPosition: "center",
       backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
         "#fff"
-      )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`
-    }
+      )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
+    },
   },
   "& .MuiSwitch-track": {
     opacity: 1,
     backgroundColor: theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
-    borderRadius: 20 / 2
-  }
+    borderRadius: 20 / 2,
+  },
 }));
 
-
-export { DesktopMainMenu, MobileMainMenu, MenuLink, SiteLogo, DrawerBox, DrawerDivider, MenuButton, Humburgger, HumburggerClose, MaterialUISwitch };
+export {
+  DesktopMainMenu,
+  MobileMainMenu,
+  MenuLink,
+  SiteLogo,
+  DrawerBox,
+  DrawerDivider,
+  MenuButton,
+  Humburgger,
+  HumburggerClose,
+  MaterialUISwitch,
+  Div,
+};

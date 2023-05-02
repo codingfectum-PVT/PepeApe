@@ -7,15 +7,16 @@ import MainPage from '../Views/Pages/Main';
 const getActiveTheme = (themeMode) => {
   console.log('themeMode: ', themeMode)
   return createTheme({
-    pageColor: themeMode === 'true' || !themeMode ? '#efefef': '#161616',
+    pageColor: '#fff',
 
-    bgPrimary: themeMode === 'true' || !themeMode ? '#efefef': '#161616',
-    bgSecondary: themeMode === 'true' || !themeMode ? 'green': 'red',
+    bgPrimary: '#161616',
+    bgSecondary: 'red',
 
-    textPrimary: themeMode === 'true' || !themeMode ? '#000000': '#ffffff',
-    textSecondary: themeMode === 'true' || !themeMode ? 'white': 'black',
+    textPrimary: '#ffffff',
+    textSecondary: 'black',
+    textTertiary: '#1765FF',
 
-    switchColor: themeMode === 'true' || !themeMode ? '#6c6c6c': '#b1b1b1',
+    switchColor: '#b1b1b1',
   })
 }
 const ThemeContainer = () => {

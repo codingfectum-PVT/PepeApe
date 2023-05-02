@@ -5,24 +5,24 @@ import Divider from "@mui/material/Divider";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { toggleTheme } from '../../../../Redux/switchTheme'
 import { useDispatch, useSelector } from "react-redux";
-import logo from "../../../../assets/logo.png";
+import logo from "../../../../assets/images/logo.png";
 import { MaterialUISwitch, MenuLink, MobileMainMenu, SiteLogo, DrawerBox, DrawerDivider, Humburgger, HumburggerClose, MenuButton } from "../styles";
 
 
 const MobileMenu = (props) => {
-  const currentTheme = useSelector( (state) => state.LDTheme.value )
+  const currentTheme = useSelector((state) => state.LDTheme.value)
   const dispatch = useDispatch();
   const [state, setState] = useState({ left: false });
-  
+
   const toggleDrawer = (anchor, open) => (event) => {
-    console.log('thest: ', anchor + " : " +open)
-    if ( event.type === "keydown" && (event.key === "Tab" || event.key === "Shift") ){return;}
+    console.log('thest: ', anchor + " : " + open)
+    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) { return; }
     setState({ ...state, [anchor]: open });
   };
   return (
     <MobileMainMenu>
       <MenuLink href="/" p="15px 0 15px">
-        <SiteLogo src={logo} width="150" height='50' />
+        <SiteLogo src={logo}  width="215" height='78' alt="Logo"/>
       </MenuLink>
       <MenuButton onClick={toggleDrawer("left", true)}>
         {state["left"] ? (
@@ -43,16 +43,16 @@ const MobileMenu = (props) => {
         >
           <DrawerDivider>
             <MenuLink href="/">
-              <SiteLogo src={logo} width="150" height='50' />
+              <SiteLogo src={logo}  width="215" height='78' alt="Logo"/>
             </MenuLink>
             <Divider />
             <List>
-              {props.menuList.map((value, i) => <MenuLink key={i} href={value.link}  target={value.target} className={value.customClass + " d-block"}>{value.title}</MenuLink>)}
+              {props.menuList.map((value, i) => <MenuLink key={i} href={value.link} target={value.target} className={value.customClass + " d-block"}>{value.title}</MenuLink>)}
             </List>
           </DrawerDivider>
           <DrawerDivider>
             <List>
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={
                   <MaterialUISwitch 
                     sx={{ m: 1 }} 
@@ -60,7 +60,7 @@ const MobileMenu = (props) => {
                   />
                 }
                 onClick={() => dispatch(toggleTheme())}
-              />
+              /> */}
             </List>
           </DrawerDivider>
         </DrawerBox>
